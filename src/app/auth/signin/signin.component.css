@@ -1,0 +1,15 @@
+
+img{
+    margin-left: 38%;
+    padding: 10px;
+align-content: center;
+}
+input.ng-invalid.ng-touched{
+    border-color:red;
+  }
+label{
+    color: white;
+}
+p{
+    color: red;
+}

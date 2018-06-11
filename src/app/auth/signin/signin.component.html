@@ -1,0 +1,25 @@
+
+<div class="container" > 
+<img src="../../../assets/icon.png" width="200" height="200" >
+<hr>
+
+  <form (ngSubmit)='onsubmit(f)' #f="ngForm">
+    <div class="col-xs-3 col-sm-3 col-md-4" ></div>
+    <div class="col-xs-9 col-sm-9 col-md-3">
+      <div class="row">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" placeholder="Phone Number" class="form-control" name="PhoneNumber" ngModel required pattern="^05[0-9]{8}$">
+      </div>
+      <div class="row">
+        <label for="password">Password</label>
+        <input type="password" placeholder="Password" class="form-control" name="Password" ngModel required minlength="6" pattern="^(([0-9]+[a-zA-z]+[0-9]*)|([a-zA-Z]+[0-9]+[a-zA-Z]*))+$">
+      </div>
+      <p *ngIf="inValid" class="row">Your email/password is incorrect!</p>
+      <hr>
+      <div class="row">
+        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Signin</button>
+      </div>
+
+    </div>
+  </form>
+</div>
