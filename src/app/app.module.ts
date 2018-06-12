@@ -9,22 +9,29 @@ import { FormsModule } from '@angular/forms';
 import { HttpService } from './services/http.service';
 // import { AuthModule } from './auth/auth.module';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { LogsComponent } from './logs/logs.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AuthGuard } from './auth.guard';
+import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    LogsComponent,
+    SettingsComponent,
+    ConfirmationPageComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     HttpModule,
     FormsModule,
-    Ng4LoadingSpinnerModule.forRoot() 
+    Ng4LoadingSpinnerModule 
 
   ],
-  providers: [HttpService],
+  providers: [HttpService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

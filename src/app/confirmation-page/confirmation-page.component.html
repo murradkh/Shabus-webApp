@@ -1,0 +1,24 @@
+<div class="container" style="margin-top: 50%;">
+  <div *ngIf="!pageInValid">
+    <div class="row">
+        <div class="col-xs-3"></div>
+    <img src="../../assets/success.png" width="200" height="200" style="align-content:center">
+  </div>
+    <div class="row" style="color: white; ">
+      <div class="col-xs-2 "></div>
+    <div class="col-xs-10 "><h3 >תודה לך {{driverName}}</h3></div>
+    <span class="col-xs-4"></span>
+    <h4 class="col-xs-8">החשבון הופעל</h4>
+  </div>
+</div>
+<div *ngIf="pageInValid">
+    <div class="row">
+        <div class="col-xs-3"></div>
+    <img src="../../assets/unsuccess.png" width="200" height="200" style="align-content:center">
+    <div class="row" style="color: white; ">
+        <div class="col-xs-2 "></div>
+      <div class="col-xs-10 "><h3 >מספר התקוף אינו תקין</h3></div>
+      </div>
+  </div>
+</div>
+  </div>

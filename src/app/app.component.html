@@ -1,4 +1,17 @@
 <div class="container" >
+    <div class="row" *ngIf="isAuthnicated()">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+          <ul class="nav nav-tabs" >
+            <li role="presentation"  class="active"><a routerLink="/logs">Logs</a></li>
+            <li role="presentation"><a routerLink="/settings">Settings</a></li>
+            <li role="presentation" ><a routerLink="/settings">Settings</a></li>
+          </ul>
+        </div>
+      </div>
+    <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
   <router-outlet ></router-outlet>
-  <ng4-loading-spinner> </ng4-loading-spinner>
+  <app-spinner> </app-spinner>
+  </div>
+  </div>
 </div>

@@ -23,7 +23,7 @@ PostData(body, URL){
     return this.http.post(URL, body, options);
 }
 setToken(token){
-    localStorage.setItem('Token',token);
+    localStorage.setItem('token',token);
     this.token = token;
     this.set_decoded_token();
 

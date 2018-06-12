@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
 import { Response } from '@angular/http';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -15,7 +16,8 @@ export class SigninComponent implements OnInit {
   private inValid = false;
 
   constructor(private httpService: HttpService,
-    private spinnerService: Ng4LoadingSpinnerService) { }
+    private spinnerService: Ng4LoadingSpinnerService,
+    private router:Router) { }
 
   ngOnInit() {
   }
@@ -28,12 +30,13 @@ export class SigninComponent implements OnInit {
       if (body['Status'] == 'Accept') {
         this.httpService.setToken(body['Token']);
         this.httpService.setImage(body['Image']);
-
+        this.router.navigate(['/logs']);
       } else {// in case the detail of the user is not valid 
         // this.alert_types_service.get_driver_not_exist_alert().present();
         this.inValid = true;
       }
     }, (error) => {
+      this.spinnerService.hide();
       alert(error);
     });
 

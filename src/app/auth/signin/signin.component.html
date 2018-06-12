@@ -1,5 +1,4 @@
 
-<div class="container" > 
 <img src="../../../assets/icon.png" width="200" height="200" >
 <hr>
 
@@ -14,7 +13,10 @@
         <label for="password">Password</label>
         <input type="password" placeholder="Password" class="form-control" name="Password" ngModel required minlength="6" pattern="^(([0-9]+[a-zA-z]+[0-9]*)|([a-zA-Z]+[0-9]+[a-zA-Z]*))+$">
       </div>
-      <p *ngIf="inValid" class="row">Your email/password is incorrect!</p>
+      <br>
+      <div *ngIf="inValid"  class="alert alert-danger row" role="alert">
+        <p>Your email/password is incorrect!</p></div>
+ 
       <hr>
       <div class="row">
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Signin</button>
@@ -22,4 +24,3 @@
 
     </div>
   </form>
-</div>
