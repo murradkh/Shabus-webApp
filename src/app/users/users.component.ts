@@ -10,8 +10,8 @@ import { Response } from '@angular/http';
 })
 export class UsersComponent implements OnInit {
 
-  //  private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/";
-  private getData_URL: string = "http://127.0.0.1:4990/user/manager/";
+   private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/";
+  // private getData_URL: string = "http://127.0.0.1:4990/user/manager/";
   public headers: Array<string> = []; 
   public data: Array<Array<any>> = [];
   public unWantedCols:{};

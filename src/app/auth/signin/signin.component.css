@@ -1,8 +1,10 @@
 
 img{
-    margin-left: 38%;
+    margin-left: 50%;
     padding: 10px;
-align-content: center;
+}
+form{
+    margin-left:35%;
 }
 input.ng-invalid.ng-touched{
     border-color:red;
