@@ -18,4 +18,7 @@ return this.httpService.is_Authinicated();
   newPage(event){
 console.log(event);
   }
+  logOut(){
+    this.httpService.clearStorage();
+  }
 }

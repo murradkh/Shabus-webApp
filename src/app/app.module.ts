@@ -8,11 +8,12 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { FormsModule } from '@angular/forms';
 import { HttpService } from './services/http.service';
 // import { AuthModule } from './auth/auth.module';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+// import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LogsComponent } from './logs/logs.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +22,15 @@ import { ConfirmationPageComponent } from './confirmation-page/confirmation-page
     PagenotfoundComponent,
     LogsComponent,
     SettingsComponent,
-    ConfirmationPageComponent
+    ConfirmationPageComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     HttpModule,
     FormsModule,
-    Ng4LoadingSpinnerModule 
+    // Ng4LoadingSpinnerModule 
 
   ],
   providers: [HttpService, AuthGuard],

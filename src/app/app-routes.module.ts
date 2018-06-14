@@ -8,12 +8,16 @@ import { LogsComponent } from './logs/logs.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
+import { UsersComponent } from './users/users.component';
 
 const routes:Routes=[
     {path:"signIn",component:SigninComponent, canActivate:[AuthGuard]},
     {path:"logs",component:LogsComponent, canActivate:[AuthGuard]},
+    {path:"users",component:UsersComponent, canActivate:[AuthGuard]},
     {path:"settings",component:SettingsComponent, canActivate:[AuthGuard]},
     {path:"",redirectTo: "logs", pathMatch: "full"},
+    {path:"logs/:id",component:LogsComponent, canActivate:[AuthGuard]},
+    {path:"users/:id",component:UsersComponent, canActivate:[AuthGuard]},
     {path:"confirmation/:id",component:ConfirmationPageComponent},    
     {path:"pagenotfound",component:PagenotfoundComponent},
     {path:"**",redirectTo:'pagenotfound'}

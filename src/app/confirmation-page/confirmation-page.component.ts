@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpService } from '../services/http.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+// import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { Response } from '@angular/http';
 
 @Component({
@@ -11,15 +11,16 @@ import { Response } from '@angular/http';
 })
 export class ConfirmationPageComponent implements OnInit {
 
-static confirmation_URL:string = "http://127.0.0.1:4990/user/driver/confirmation";
 // static confirmation_URL:string = "http://127.0.0.1:4990/user/driver/confirmation";
+static confirmation_URL:string = "https://shabus-mobile-api.herokuapp.com/user/driver/confirmation";
 
 private driverName: string = "";
-private pageInValid:boolean = true;
+public pageInValid:boolean = true;
 constructor(private route: ActivatedRoute,
             private httpService:HttpService,
-            private spinnerService: Ng4LoadingSpinnerService) { 
-              this.spinnerService.show();
+            // private spinnerService: Ng4LoadingSpinnerService
+          ) { 
+              // this.spinnerService.show();
 
             }
 
@@ -31,9 +32,9 @@ this.httpService.PostData(params,ConfirmationPageComponent.confirmation_URL).sub
     this.driverName=body['Name'];
     this.pageInValid = false;
   }
-  this.spinnerService.hide();
+  // this.spinnerService.hide();
 },error=>{
-  this.spinnerService.hide();
+  // this.spinnerService.hide();
 alert(error);
 });
     });

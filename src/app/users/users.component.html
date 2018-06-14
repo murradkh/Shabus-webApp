@@ -1,0 +1,29 @@
+<div class="col-md-3">
+    <div class="list-group">  
+            <a [routerLink]="['/users','Drivers']" class="list-group-item">Drivers</a>
+            <a [routerLink]="['/users','Passengers']" class="list-group-item">Passengers</a>
+            <a [routerLink]="['/users','Managers']" class="list-group-item">Managers</a>
+            <a [routerLink]="['/users','Moovit-users']" class="list-group-item">Moovit users</a>
+          </div>
+        </div>
+        <div class="col-md-9">
+    
+            <table class="table table-hover table-responsive table-bordered" >
+                <thead>
+                  <tr>
+                  <th *ngFor="let h of headers">{{h}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of data">
+                    <ng-container *ngFor="let col of row">
+                        <td  *ngIf="check(col[0])">{{col[1]}}</td>
+                    </ng-container>
+              
+                  </tr>
+                </tbody>
+              </table>
+    
+          </div>
+    
+    

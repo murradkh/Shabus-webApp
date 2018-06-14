@@ -1,0 +1,27 @@
+<div class="col-md-3">
+<div class="list-group">  
+        <a [routerLink]="['/logs','Current-shifts']" class="list-group-item">Current shifts</a>
+        <a [routerLink]="['/logs','Previous-shifts']" class="list-group-item">Previous shifts</a>
+        <a [routerLink]="['/logs','New-rides']" class="list-group-item">New rides</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+
+        <table class="table table-hover table-responsive table-bordered">
+            <thead>
+              <tr>
+              <th *ngFor="let h of headers">{{h}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of data">
+                <ng-container *ngFor="let col of row">
+                    <td  *ngIf="check(col[0])">{{col[1]}}</td>
+                </ng-container>
+          
+              </tr>
+            </tbody>
+          </table>
+
+      </div>
+

@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "ex2-angular-3ad72"
+    "default": "ex2-angular-3ad72",
+    "production": "shabus-21aa4"
   }
 }
