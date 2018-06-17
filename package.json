@@ -12,9 +12,11 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.3",
     "@angular/animations": "^4.2.4",
+    "@angular/cdk": "^6.2.1",
     "@angular/common": "^4.2.4",
-    "@angular/compiler": "^4.2.4",
+    "@angular/compiler": "^6.0.5",
     "@angular/core": "^4.2.4",
     "@angular/forms": "^4.2.4",
     "@angular/http": "^4.2.4",

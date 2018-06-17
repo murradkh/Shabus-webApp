@@ -14,6 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { UsersComponent } from './users/users.component';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -23,15 +24,17 @@ import { UsersComponent } from './users/users.component';
     LogsComponent,
     SettingsComponent,
     ConfirmationPageComponent,
-    UsersComponent
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     HttpModule,
     FormsModule,
-    // Ng4LoadingSpinnerModule 
-
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
+          })
+         
   ],
   providers: [HttpService, AuthGuard],
   bootstrap: [AppComponent]

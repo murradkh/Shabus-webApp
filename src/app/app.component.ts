@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { HttpService } from './services/http.service';
+import { ActivatedRoute, Route } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LogsComponent } from './logs/logs.component';
+import { UsersComponent } from './users/users.component';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +12,7 @@ import { HttpService } from './services/http.service';
 })
 export class AppComponent {
   title = 'app';
+  activePage:string="";
   constructor(private httpService:HttpService){
 
   }
@@ -15,8 +20,11 @@ export class AppComponent {
   isAuthnicated(){
 return this.httpService.is_Authinicated();
   }
-  newPage(event){
-console.log(event);
+  onActivate(event){
+    if(event instanceof LogsComponent)
+    this.activePage = 'logs';
+    else if(event instanceof UsersComponent)
+    this.activePage = 'users';
   }
   logOut(){
     this.httpService.clearStorage();

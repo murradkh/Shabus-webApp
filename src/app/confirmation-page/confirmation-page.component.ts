@@ -26,7 +26,7 @@ constructor(private route: ActivatedRoute,
 
   ngOnInit() {
     this.route.params.subscribe(params=>{
-this.httpService.PostData(params,ConfirmationPageComponent.confirmation_URL).subscribe((response:Response)=>{
+this.httpService.sendData(params,ConfirmationPageComponent.confirmation_URL).subscribe((response:Response)=>{
   let body = response.json();
   if(body['Status']=="Accept"){
     this.driverName=body['Name'];

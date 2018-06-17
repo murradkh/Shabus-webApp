@@ -5,6 +5,7 @@ import { Response } from '@angular/http';
 // import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -12,8 +13,8 @@ import {Router} from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  // private login_URL: string = "http://127.0.0.1:4990/user/manager/login";
-  private login_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/login";
+  private login_URL: string = "http://127.0.0.1:4990/user/manager/login";
+  // private login_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/login";
   
   public inValid = false;
 
@@ -26,7 +27,7 @@ export class SigninComponent implements OnInit {
 
   onsubmit(form: NgForm) {
     // this.spinnerService.show();
-    this.httpService.PostData(form.value, this.login_URL).subscribe((response: Response) => {
+    this.httpService.logIn(form.value, this.login_URL).subscribe((response: Response) => {
       // this.spinnerService.hide();
       let body = response.json();
       if (body['Status'] == 'Accept') {

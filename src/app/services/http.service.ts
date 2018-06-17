@@ -9,6 +9,8 @@ export class HttpService {
     private token: string = null;
     private PersonalImage: string = null;
     private decoded_token: {} = {};
+    private getData_URL: string = "http://127.0.0.1:4990/user/manager/";
+  // private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/";
 
     constructor(private http: Http
     ) {
@@ -16,7 +18,7 @@ export class HttpService {
         this.PersonalImage = localStorage.getItem('img');
         this.set_decoded_token();
     }
-    PostData(body, URL) {
+    logIn(body, URL) {
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         let options = new RequestOptions({ headers: headers });
@@ -75,10 +77,10 @@ export class HttpService {
         this.token = null;
         this.PersonalImage = null;
     }
-    getData(params, URL) {
+    sendData(params, body) {
         // let headers = new Headers();
         // headers.append('Content-Type', 'application/json');
         // let options = new RequestOptions({ headers: headers });
-        return this.http.get(URL+params);
+        return this.http.post(this.getData_URL+params, body);
     }
 }

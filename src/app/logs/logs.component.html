@@ -1,27 +1,113 @@
-<div class="col-md-3">
-<div class="list-group">  
-        <a [routerLink]="['/logs','Current-shifts']" class="list-group-item">Current shifts</a>
-        <a [routerLink]="['/logs','Previous-shifts']" class="list-group-item">Previous shifts</a>
-        <a [routerLink]="['/logs','New-rides']" class="list-group-item">New rides</a>
-      </div>
-    </div>
-    <div class="col-md-9">
+<!-- <agm-map [latitude]="lat" [longitude]="lng" [styles]="[
+  {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+  {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+  {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+  {
+    featureType: 'administrative.locality',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#d59563'}]
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#d59563'}]
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'geometry',
+    stylers: [{color: '#263c3f'}]
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#6b9a76'}]
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{color: '#38414e'}]
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{color: '#212a37'}]
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#9ca5b3'}]
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [{color: '#746855'}]
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [{color: '#1f2835'}]
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#f3d19c'}]
+  },
+  {
+    featureType: 'transit',
+    elementType: 'geometry',
+    stylers: [{color: '#2f3948'}]
+  },
+  {
+    featureType: 'transit.station',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#d59563'}]
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{color: '#17263c'}]
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.fill',
+    stylers: [{color: '#515c6d'}]
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.stroke',
+    stylers: [{color: '#17263c'}]
+  }
+]"> 
+  <agm-marker [latitude]="lat" iconUrl="../../assets/bus.png" [longitude]="lng">
 
-        <table class="table table-hover table-responsive table-bordered">
-            <thead>
-              <tr>
-              <th *ngFor="let h of headers">{{h}}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of data">
-                <ng-container *ngFor="let col of row">
-                    <td  *ngIf="check(col[0])">{{col[1]}}</td>
-                </ng-container>
-          
-              </tr>
-            </tbody>
-          </table>
+  </agm-marker>
+</agm-map>
+-->
+<div class="col-md-3" >
+  <div class="list-group">
+    <a [routerLink]="['/logs','Current-shifts']" class="list-group-item active" [class.active]='id=="Current shifts"' >Current shifts</a>
+    <a [routerLink]="['/logs','Previous-shifts']" class="list-group-item" [class.active]='id=="Previous shifts"'>Previous shifts</a>
+    <a [routerLink]="['/logs','New-rides']" class="list-group-item" [class.active]='id=="New rides"'>New rides</a>
+  </div>
+</div>
+<div class="col-md-9">
+  <table class="table table-hover table-responsive table-bordered table-sm">
+    <thead style="background-color:lightslategrey">
+      <tr>
+        <ng-container *ngFor="let h of data[0]">
+          <th *ngIf="checkWantedCol(h[1][0])">
+            {{h[1][0]}}
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <ng-container *ngFor="let col of row">
+          <td *ngIf="checkWantedCol(col[1][0])">{{col[1][1]}}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
 
-      </div>
-
+</div>
