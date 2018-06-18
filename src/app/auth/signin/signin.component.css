@@ -3,9 +3,9 @@
     margin-left: 50%;
     padding: 10px;
 } */
-/* form{
-    margin-left:35%;
-} */
+form{
+    margin-left:5%;
+}
 input.ng-invalid.ng-touched{
     border-color:red;
   }

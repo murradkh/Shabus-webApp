@@ -8,13 +8,13 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { FormsModule } from '@angular/forms';
 import { HttpService } from './services/http.service';
 // import { AuthModule } from './auth/auth.module';
-// import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { LogsComponent } from './logs/logs.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { UsersComponent } from './users/users.component';
-import { AgmCoreModule } from '@agm/core';
+// import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -31,9 +31,10 @@ import { AgmCoreModule } from '@agm/core';
     RoutingModule,
     HttpModule,
     FormsModule,
-    AgmCoreModule.forRoot({
-      apiKey:'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
-          })
+    Ng4LoadingSpinnerModule.forRoot(),
+    // AgmCoreModule.forRoot({
+    //   apiKey:'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
+    //       })
          
   ],
   providers: [HttpService, AuthGuard],

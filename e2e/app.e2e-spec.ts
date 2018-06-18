@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('shabus-web-app App', () => {
+describe('my-new-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
