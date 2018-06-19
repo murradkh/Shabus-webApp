@@ -9,22 +9,20 @@ import { FormsModule } from '@angular/forms';
 import { HttpService } from './services/http.service';
 // import { AuthModule } from './auth/auth.module';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-import { LogsComponent } from './logs/logs.component';
+import { DataComponent } from './data/data.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
-import { UsersComponent } from './users/users.component';
-// import { AgmCoreModule } from '@agm/core';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
     AppComponent,
     SigninComponent,
     PagenotfoundComponent,
-    LogsComponent,
+    DataComponent,
     SettingsComponent,
     ConfirmationPageComponent,
-    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +30,9 @@ import { UsersComponent } from './users/users.component';
     HttpModule,
     FormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
-    // AgmCoreModule.forRoot({
-    //   apiKey:'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
-    //       })
+    AgmCoreModule.forRoot({
+      apiKey:'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
+          })
          
   ],
   providers: [HttpService, AuthGuard],

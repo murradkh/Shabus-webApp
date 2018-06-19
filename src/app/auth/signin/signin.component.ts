@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpService } from '../../services/http.service';
 import { Response } from '@angular/http';
-// import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import {Router} from '@angular/router';
 
 
@@ -19,16 +19,16 @@ export class SigninComponent implements OnInit {
   public inValid = false;
 
   constructor(private httpService: HttpService,
-    // private spinnerService: Ng4LoadingSpinnerService,
+    private spinnerService: Ng4LoadingSpinnerService,
     private router:Router) { }
 
   ngOnInit() {
   }
 
   onsubmit(form: NgForm) {
-    // this.spinnerService.show();
-    this.httpService.logIn(form.value, this.login_URL).subscribe((response: Response) => {
-      // this.spinnerService.hide();
+    this.spinnerService.show();
+    this.httpService.sendData(form.value, this.login_URL).subscribe((response: Response) => {
+      this.spinnerService.hide();
       let body = response.json();
       if (body['Status'] == 'Accept') {
         this.httpService.setToken(body['Token']);
@@ -39,7 +39,7 @@ export class SigninComponent implements OnInit {
         this.inValid = true;
       }
     }, (error) => {
-      // this.spinnerService.hide();
+      this.spinnerService.hide();
       alert(error);
     });
 

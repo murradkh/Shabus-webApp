@@ -15,11 +15,9 @@
       <br>
       <div *ngIf="inValid"  class="alert alert-danger row" role="alert">
         <p>Your email/password is incorrect!</p></div>
- 
       <hr>
       <div class="row">
         <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Signin</button>
       </div>
-
     </div>
   </form>

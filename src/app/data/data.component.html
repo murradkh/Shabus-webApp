@@ -1,4 +1,4 @@
-<!-- <agm-map [latitude]="lat" [longitude]="lng" [styles]="[
+<!-- <agm-map id="demo" class="collapse" [latitude]="lat" [longitude]="lng" [styles]="[
   {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
   {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
   {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
@@ -77,20 +77,29 @@
     elementType: 'labels.text.stroke',
     stylers: [{color: '#17263c'}]
   }
-]"> 
-  <agm-marker [latitude]="lat" iconUrl="../../assets/bus.png" [longitude]="lng">
+]">  
+ <agm-marker [latitude]="lat" iconUrl="../../assets/bus.png" [longitude]="lng">
 
   </agm-marker>
-</agm-map>
--->
-<div class="col-md-3" >
-  <div class="list-group">
-    <a [routerLink]="['/logs','Current-shifts']" class="list-group-item active" [class.active]='id=="Current shifts"' >Current shifts</a>
+</agm-map> -->
+
+
+<div class="col-md-3">
+  <div class="list-group" *ngIf="page=='logs'">
+    <a [routerLink]="['/logs','Current-shifts']" class="list-group-item" [class.active]='id=="Current shifts"'>Current shifts</a>
     <a [routerLink]="['/logs','Previous-shifts']" class="list-group-item" [class.active]='id=="Previous shifts"'>Previous shifts</a>
     <a [routerLink]="['/logs','New-rides']" class="list-group-item" [class.active]='id=="New rides"'>New rides</a>
   </div>
+  <div class="list-group" *ngIf="page=='users'">
+    <a [routerLink]="['/users','Drivers']" class="list-group-item active" [class.active]='id=="Drivers"'>Drivers</a>
+    <a [routerLink]="['/users','Passengers']" class="list-group-item" [class.active]='id=="Passengers"'>Passengers</a>
+    <a [routerLink]="['/users','Managers']" class="list-group-item" [class.active]='id=="Managers"'>Managers</a>
+    <a [routerLink]="['/users','Moovit-users']" class="list-group-item" [class.active]='id=="Moovit users"'>Moovit users</a>
+  </div>
 </div>
 <div class="col-md-9">
+  <input class="form-control myInput" type="text" placeholder="Search..">
+  <br>
   <table class="table table-hover table-responsive table-bordered table-sm">
     <thead style="background-color:lightslategrey">
       <tr>
@@ -101,13 +110,39 @@
         </ng-container>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let row of data">
+    <tbody class="myTable">
+      <tr *ngFor="let row of data" (click)="openMap(row)" data-toggle="modal" data-target="#myModal">
         <ng-container *ngFor="let col of row">
           <td *ngIf="checkWantedCol(col[1][0])">{{col[1][1]}}</td>
         </ng-container>
       </tr>
     </tbody>
   </table>
+</div>
 
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Location</h4>
+      </div>
+      <div class="modal-body">
+        <agm-map  [latitude]="lat" [longitude]="lng" [styles]="mapStyles" [zoom]="zoom" [usePanning]="true">
+            <agm-marker [latitude]="place[1][1]['lat']" [longitude]="place[1][1]['lng']" *ngFor="let place of places;" animation="DROP" [label]="markerLabel(place[1][1][0])">
+              {{place[1][1]['lat']}}
+            </agm-marker>
+         </agm-map>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
