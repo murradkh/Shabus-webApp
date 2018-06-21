@@ -19,12 +19,18 @@ export class DataComponent implements OnInit, OnDestroy {
   public lat: number;
   public lng: number;
   public places: Array<any>;
-  public zoom:number;
+  public page: string = "";
+  public pickUpLocation1: Array<any>=[]; // this storing the data which we get from the server
+  public pickUpLocation2: Array<any>=[]; // this is the same, but with slow adding elements to it (for making marker view nicer)
+  public zoom: number;
+  public clickedRow;
   private routeSubscription: Subscription;
   private httpSubscription: Subscription;
-  private page: string = "";
-  private getData_URL: string = "http://127.0.0.1:4990/user/manager/";
-  // private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/";
+  // private getData_URL: string = "http://127.0.0.1:4990/user/manager/Get/";
+  private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/Get";
+  // private deleteDate_URL: string = "http://127.0.0.1:4990/user/manager/Delete/";
+  private deleteDate_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/Delete";
+  
 
 
   constructor(private activeRoute: ActivatedRoute,
@@ -37,7 +43,6 @@ export class DataComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     $(".myInput").on("keyup", function () { // this part adding to search bar its functionality (searching in every row)
-      console.log("saf");
       var value = $(this).val().toString().toLowerCase();
       $(".myTable tr").filter(function () {
         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
@@ -127,6 +132,12 @@ export class DataComponent implements OnInit, OnDestroy {
     ];
 
     this.unWantedCols = { "Start location": 0, "End location": 0, "Riding place": 0, "Current location": 0 };
+    this.httpService.sendData({ 'Token': this.httpService.getToken() }, this.getData_URL, "pickup location").subscribe((response:Response)=>{
+      let body = response.json();
+      this.pickUpLocation1 = body['Data'];
+    }
+
+    );
     this.routeSubscription = this.activeRoute.params.subscribe((params: {}) => {
       if (this.httpSubscription != undefined)
         this.httpSubscription.unsubscribe();
@@ -159,23 +170,52 @@ export class DataComponent implements OnInit, OnDestroy {
       this.routeSubscription.unsubscribe();
   }
 
-  openMap(row: Array<any>) {
-    this.lat=31.7683;
-    this.lng=35.2137;
-    this.zoom=12;
-     this.places = row.filter((value) => {
-      if (value[1][0] == 'Current location' || value[1][0] == 'Start location' || value[1][0] == 'End location' || value[1][0] == "Riding place"){
-      if(value[1][0] == 'Current location'){
-        this.zoom=14;
-        this.lat=value[1][1]['lat'];
-        this.lng=value[1][1]['lng'];
-      }
+
+  markerLabel(element) {
+    if (element == 'Start location')
+      return 'A';
+    if (element == 'End location')
+      return 'B';
+    if (element == 'Current location')
+      return 'C';
+
+
+  }
+
+  deleteRow() {
+let phoneNumber = this.clickedRow.find((value)=>{
+if(value[1][0]=="PhoneNumber" || value[1][0]=="phone_number")
+return true;
+})[1][1];
+
+this.httpService.sendData({'PhoneNumber':phoneNumber, 'Token':this.httpService.getToken()},this.deleteDate_URL,this.id).subscribe();
+var index = this.data.indexOf(this.clickedRow, 0);
+this.data.splice(index,1);
+}
+
+  openMap(row) {
+    this.clickedRow = row;
+    this.lat = 31.7683;
+    this.lng = 35.2137;
+    this.zoom = 12;
+    this.places = row.filter((value) => {
+      if (value[1][0] == 'Current location' || value[1][0] == 'Start location' || value[1][0] == 'End location' || value[1][0] == "Riding place") {
+        // if (value[1][0] == 'Current location') {
+          this.lat = value[1][1]['lat'];
+          this.lng = value[1][1]['lng'];
+        // }
         return true;
-    }
+      }
     });
+ this.slowAddingElements(0);
   }
-  markerLabel(element){
-  return 'Aba'
-  }
+slowAddingElements(index){
+  setTimeout(() => {
+    if(index < this.pickUpLocation1.length){
+    this.pickUpLocation2.push(this.pickUpLocation1[index]);
+    this.slowAddingElements((index+1));
+    }
+  }, 100);
+}
 
 }

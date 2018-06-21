@@ -1,88 +1,3 @@
-<!-- <agm-map id="demo" class="collapse" [latitude]="lat" [longitude]="lng" [styles]="[
-  {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-  {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-  {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-  {
-    featureType: 'administrative.locality',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}]
-  },
-  {
-    featureType: 'poi',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}]
-  },
-  {
-    featureType: 'poi.park',
-    elementType: 'geometry',
-    stylers: [{color: '#263c3f'}]
-  },
-  {
-    featureType: 'poi.park',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#6b9a76'}]
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry',
-    stylers: [{color: '#38414e'}]
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry.stroke',
-    stylers: [{color: '#212a37'}]
-  },
-  {
-    featureType: 'road',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#9ca5b3'}]
-  },
-  {
-    featureType: 'road.highway',
-    elementType: 'geometry',
-    stylers: [{color: '#746855'}]
-  },
-  {
-    featureType: 'road.highway',
-    elementType: 'geometry.stroke',
-    stylers: [{color: '#1f2835'}]
-  },
-  {
-    featureType: 'road.highway',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#f3d19c'}]
-  },
-  {
-    featureType: 'transit',
-    elementType: 'geometry',
-    stylers: [{color: '#2f3948'}]
-  },
-  {
-    featureType: 'transit.station',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#d59563'}]
-  },
-  {
-    featureType: 'water',
-    elementType: 'geometry',
-    stylers: [{color: '#17263c'}]
-  },
-  {
-    featureType: 'water',
-    elementType: 'labels.text.fill',
-    stylers: [{color: '#515c6d'}]
-  },
-  {
-    featureType: 'water',
-    elementType: 'labels.text.stroke',
-    stylers: [{color: '#17263c'}]
-  }
-]">  
- <agm-marker [latitude]="lat" iconUrl="../../assets/bus.png" [longitude]="lng">
-
-  </agm-marker>
-</agm-map> -->
-
 
 <div class="col-md-3">
   <div class="list-group" *ngIf="page=='logs'">
@@ -121,26 +36,28 @@
 </div>
 
 
-
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <img  src="../../assets/trash.png" (click)="deleteRow()" data-dismiss="modal" class="close">
         <h4 class="modal-title">Location</h4>
       </div>
       <div class="modal-body">
         <agm-map  [latitude]="lat" [longitude]="lng" [styles]="mapStyles" [zoom]="zoom" [usePanning]="true">
-            <agm-marker [latitude]="place[1][1]['lat']" [longitude]="place[1][1]['lng']" *ngFor="let place of places;" animation="DROP" [label]="markerLabel(place[1][1][0])">
-              {{place[1][1]['lat']}}
-            </agm-marker>
+             <agm-marker [latitude]="place[1][1]['lat']" [longitude]="place[1][1]['lng']" *ngFor="let place of places;" animation="DROP" [label]="markerLabel(place[1][0])" >
+            </agm-marker> 
+            <agm-marker [latitude]="place[1][1]" [longitude]="place[0][1]" *ngFor="let place of pickUpLocation2;" animation="DROP" >
+              </agm-marker>
          </agm-map>
 
       </div>
       <div class="modal-footer">
+
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          
       </div>
     </div>
 

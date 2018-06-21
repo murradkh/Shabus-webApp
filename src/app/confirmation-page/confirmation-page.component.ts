@@ -11,8 +11,8 @@ import { Response } from '@angular/http';
 })
 export class ConfirmationPageComponent implements OnInit {
 
-static confirmation_URL:string = "http://127.0.0.1:4990/user/driver/confirmation";
-// static confirmation_URL:string = "https://shabus-mobile-api.herokuapp.com/user/driver/confirmation";
+// static confirmation_URL:string = "http://127.0.0.1:4990/user/driver/confirmation";
+static confirmation_URL:string = "https://shabus-mobile-api.herokuapp.com/user/driver/confirmation";
 
 private driverName: string = "";
 public pageInValid:boolean = undefined;

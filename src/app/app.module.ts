@@ -7,10 +7,8 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { FormsModule } from '@angular/forms';
 import { HttpService } from './services/http.service';
-// import { AuthModule } from './auth/auth.module';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { DataComponent } from './data/data.component';
-import { SettingsComponent } from './settings/settings.component';
 import { AuthGuard } from './auth.guard';
 import { ConfirmationPageComponent } from './confirmation-page/confirmation-page.component';
 import { AgmCoreModule } from '@agm/core';
@@ -21,7 +19,6 @@ import { AgmCoreModule } from '@agm/core';
     SigninComponent,
     PagenotfoundComponent,
     DataComponent,
-    SettingsComponent,
     ConfirmationPageComponent,
   ],
   imports: [

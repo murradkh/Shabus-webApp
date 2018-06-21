@@ -13,8 +13,8 @@ import {Router} from '@angular/router';
 })
 export class SigninComponent implements OnInit {
 
-  private login_URL: string = "http://127.0.0.1:4990/user/manager/login";
-  // private login_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/login";
+  // private login_URL: string = "http://127.0.0.1:4990/user/manager/login";
+  private login_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/login";
   
   public inValid = false;
 
