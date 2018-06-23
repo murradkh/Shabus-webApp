@@ -28,9 +28,9 @@ import { AgmCoreModule } from '@agm/core';
     FormsModule,
     Ng4LoadingSpinnerModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey:'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
-          })
-         
+      apiKey: 'AIzaSyChc7CUHov8ED6Wj2zhFO02I605QnNqPrc'
+    })
+
   ],
   providers: [HttpService, AuthGuard],
   bootstrap: [AppComponent]

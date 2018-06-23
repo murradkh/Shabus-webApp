@@ -20,17 +20,17 @@ export class DataComponent implements OnInit, OnDestroy {
   public lng: number;
   public places: Array<any>;
   public page: string = "";
-  public pickUpLocation1: Array<any>=[]; // this storing the data which we get from the server
-  public pickUpLocation2: Array<any>=[]; // this is the same, but with slow adding elements to it (for making marker view nicer)
+  public pickUpLocation1: Array<any> = []; // this storing the data which we get from the server
+  public pickUpLocation2: Array<any> = []; // this is the same, but with slow adding elements to it (for making marker view nicer)
   public zoom: number;
   public clickedRow;
   private routeSubscription: Subscription;
   private httpSubscription: Subscription;
   // private getData_URL: string = "http://127.0.0.1:4990/user/manager/Get/";
-  private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/Get";
+  private getData_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/Get/";
   // private deleteDate_URL: string = "http://127.0.0.1:4990/user/manager/Delete/";
-  private deleteDate_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/Delete";
-  
+  private deleteDate_URL: string = "https://shabus-mobile-api.herokuapp.com/user/manager/Delete/";
+
 
 
   constructor(private activeRoute: ActivatedRoute,
@@ -132,7 +132,7 @@ export class DataComponent implements OnInit, OnDestroy {
     ];
 
     this.unWantedCols = { "Start location": 0, "End location": 0, "Riding place": 0, "Current location": 0 };
-    this.httpService.sendData({ 'Token': this.httpService.getToken() }, this.getData_URL, "pickup location").subscribe((response:Response)=>{
+    this.httpService.sendData({ 'Token': this.httpService.getToken() }, this.getData_URL, "pickup location").subscribe((response: Response) => {
       let body = response.json();
       this.pickUpLocation1 = body['Data'];
     }
@@ -159,8 +159,8 @@ export class DataComponent implements OnInit, OnDestroy {
       }
 
     });
-
   }
+
   checkWantedCol(col) {
     return (!(col in this.unWantedCols));
   }
@@ -178,20 +178,22 @@ export class DataComponent implements OnInit, OnDestroy {
       return 'B';
     if (element == 'Current location')
       return 'C';
+    if (element == 'Riding place')
+      return 'R';
 
 
   }
 
   deleteRow() {
-let phoneNumber = this.clickedRow.find((value)=>{
-if(value[1][0]=="PhoneNumber" || value[1][0]=="phone_number")
-return true;
-})[1][1];
+    let phoneNumber = this.clickedRow.find((value) => {
+      if (value[1][0] == "PhoneNumber" || value[1][0] == "phone_number")
+        return true;
+    })[1][1];
 
-this.httpService.sendData({'PhoneNumber':phoneNumber, 'Token':this.httpService.getToken()},this.deleteDate_URL,this.id).subscribe();
-var index = this.data.indexOf(this.clickedRow, 0);
-this.data.splice(index,1);
-}
+    this.httpService.sendData({ 'PhoneNumber': phoneNumber, 'Token': this.httpService.getToken() }, this.deleteDate_URL, this.id).subscribe();
+    var index = this.data.indexOf(this.clickedRow, 0);
+    this.data.splice(index, 1);
+  }
 
   openMap(row) {
     this.clickedRow = row;
@@ -201,21 +203,31 @@ this.data.splice(index,1);
     this.places = row.filter((value) => {
       if (value[1][0] == 'Current location' || value[1][0] == 'Start location' || value[1][0] == 'End location' || value[1][0] == "Riding place") {
         // if (value[1][0] == 'Current location') {
-          this.lat = value[1][1]['lat'];
-          this.lng = value[1][1]['lng'];
+        this.lat = value[1][1]['lat'];
+        this.lng = value[1][1]['lng'];
         // }
         return true;
       }
     });
- this.slowAddingElements(0);
+    this.slowAddingElements(0);
   }
-slowAddingElements(index){
-  setTimeout(() => {
-    if(index < this.pickUpLocation1.length){
-    this.pickUpLocation2.push(this.pickUpLocation1[index]);
-    this.slowAddingElements((index+1));
-    }
-  }, 100);
+
+  slowAddingElements(index) {
+    setTimeout(() => {
+      if (index < this.pickUpLocation1.length) {
+        this.pickUpLocation2.push(this.pickUpLocation1[index]);
+        this.slowAddingElements((index + 1));
+      }
+    }, 100);
+  }
+
+  checkIfCurrentElement(element){
+console.log(element);
+if(element=='Current location'){
+console.log('why')
+  return "BOUNCE";
 }
+else return "DROP";
+  }
 
 }

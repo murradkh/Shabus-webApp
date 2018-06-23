@@ -9,24 +9,20 @@ import { HttpService } from './services/http.service';
 })
 export class AppComponent {
   title = 'app';
-  activePage:string="";
-  constructor(private httpService:HttpService){
+  activePage: string = "";
+  constructor(private httpService: HttpService) {
 
   }
 
-  isAuthnicated(){
-return this.httpService.is_Authinicated();
+  isAuthnicated() {
+    return this.httpService.is_Authinicated();
   }
-  onActivate(event){
+
+  onActivate(event) {
     this.activePage = event.page;
-    // $("#myInput").on("keyup", function() {
-    //   var value = $(this).val().toLowerCase();
-    //   $("#myDIV *").filter(function() {
-    //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    //   });
-    // });
   }
-  logOut(){
+
+  logOut() {
     this.httpService.clearStorage();
   }
 }

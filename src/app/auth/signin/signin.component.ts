@@ -35,7 +35,6 @@ export class SigninComponent implements OnInit {
         this.httpService.setImage(body['Image']);
         this.router.navigate(['/logs']);
       } else {// in case the detail of the user is not valid 
-        // this.alert_types_service.get_driver_not_exist_alert().present();
         this.inValid = true;
       }
     }, (error) => {

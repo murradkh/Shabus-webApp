@@ -1,23 +1,22 @@
-<img src="../../../assets/icon.png" class="rounded mx-auto d-block" width="200" height="200" >
+<img src="../../../assets/icon.png" class="rounded mx-auto d-block" width="200" height="200">
 <hr>
-
-  <form (ngSubmit)='onsubmit(f)' #f="ngForm">
-   <!-- <div class="col-xs-3 col-sm-3 col-md-4" ></div> -->
-    <div class="col-xs-9 col-sm-9 col-md-3 col-xs-offset-3 col-sm-offset-3 col-md-offset-4">
-      <div class="row">
-        <label for="phoneNumber">Phone Number</label>
-        <input type="text" placeholder="Phone Number" class="form-control" name="PhoneNumber" ngModel required pattern="^05[0-9]{8}$">
-      </div>
-      <div class="row">
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" class="form-control" name="Password" ngModel required minlength="6" pattern="^(([0-9]+[a-zA-z]+[0-9]*)|([a-zA-Z]+[0-9]+[a-zA-Z]*))+$">
-      </div>
-      <br>
-      <div *ngIf="inValid"  class="alert alert-danger row" role="alert">
-        <p>Your email/password is incorrect!</p></div>
-      <hr>
-      <div class="row">
-        <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Signin</button>
-      </div>
+<form (ngSubmit)='onsubmit(f)' #f="ngForm">
+  <div class="col-xs-9 col-sm-9 col-md-3 col-xs-offset-3 col-sm-offset-3 col-md-offset-4">
+    <div class="row">
+      <label for="phoneNumber">Phone Number</label>
+      <input type="text" placeholder="Phone Number" class="form-control" name="PhoneNumber" ngModel required pattern="^05[0-9]{8}$">
     </div>
-  </form>
+    <div class="row">
+      <label for="password">Password</label>
+      <input type="password" placeholder="Password" class="form-control" name="Password" ngModel required minlength="6" pattern="^(([0-9]+[a-zA-z]+[0-9]*)|([a-zA-Z]+[0-9]+[a-zA-Z]*))+$">
+    </div>
+    <br>
+    <div *ngIf="inValid" class="alert alert-danger row" role="alert">
+      <p>Your email/password is incorrect!</p>
+    </div>
+    <hr>
+    <div class="row">
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Signin</button>
+    </div>
+  </div>
+</form>

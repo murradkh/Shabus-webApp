@@ -1,22 +1,28 @@
-<div class="container" >
-    <div *ngIf="isAuthnicated()">
-        <div class="col-xs-12 col-sm-10 col-md-9 col-sm-offset-1 col-md-offset-2">
-            <nav class="navbar navbar-default" >
-          <ul class="nav navbar-nav" >
-            <li role="presentation" [class.active]="activePage=='logs'"><a routerLink="/logs">Logs</a></li>
-            <li role="presentation" [class.active]="activePage=='users'"><a routerLink="/users">Users</a></li>
-          <!--  <li role="presentation"><a routerLink="/settings">Settings</a></li>-->
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-              <li><a routerLink="/signIn" (click)="logOut()"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
-            </ul>
-          </nav>
-      </div>
+<div class="container">
+  <div *ngIf="isAuthnicated()">
+    <div class="col-xs-12 col-sm-10 col-md-9 col-sm-offset-1 col-md-offset-2">
+      <nav class="navbar navbar-default">
+        <ul class="nav navbar-nav">
+          <li role="presentation" [class.active]="activePage=='logs'">
+            <a routerLink="/logs">Logs</a>
+          </li>
+          <li role="presentation" [class.active]="activePage=='users'">
+            <a routerLink="/users">Users</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a routerLink="/signIn" (click)="logOut()">
+              <span class="glyphicon glyphicon-log-out"></span> LogOut</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <div class="row">
-        <div class="text-center">
-  <router-outlet (activate)='onActivate($event)'></router-outlet>
-</div>
+  </div>
+  <div class="row">
+    <div class="text-center">
+      <router-outlet (activate)='onActivate($event)'></router-outlet>
+    </div>
   </div>
   <ng4-loading-spinner> </ng4-loading-spinner>
-  </div>
+</div>
